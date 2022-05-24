@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include<iomanip>
+using namespace std;
+
+int main()
+{
+    cout << "напишите число с точкой" << "\n";
+    vector <int> n;
+    string str;
+    cin >> str;
+    for(int i=0;i<str.size();i++) n.push_back(str[i]);
+    int point;
+    for(int j=0; j<n.size(); j++){
+        if(n[j]=='.') point=j;
+    }
+    double total_num = 0;
+    for(int left_dig=1; left_dig <=point; left_dig++){
+        total_num+= (n[left_dig-1]-48)*pow(10,point-left_dig);
+    }
+    int right_dig=1;
+    while(point+right_dig <n.size()){
+        total_num+= (n[point+right_dig]-48)*pow(10,-right_dig);
+        right_dig++;
+    }
+    int size= n.size()-1; 
+    cout<<setprecision(size)<<total_num;
+    return 0;
+}
